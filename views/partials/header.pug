@@ -1,0 +1,13 @@
+extends layout
+
+block content
+header
+  nav
+    if username
+      div #{username}
+      a(href="/logout" class="navbar-brand") Выйти
+    else
+      a(href="/login" class="navbar-brand") Войти
+    ul
+  nav.navbar.navbar-light.px-4(style="background-color: #B0DDFB;")
+  h2 #{title}

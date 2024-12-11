@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  h2(class="display-4 custom-font") Корзина
+  p
+    | При желании, вы вместе с бронированием билета можете сделать предварительный заказ еды, снеков и напитков. Ваш бокс заказ подготовят за 15 минут до начала вашего сеанса. 
+    a(href='/restaurants') Добавить в заказ еду можно перейтя по ссылке
+
+  if cart.length
+    ul
+      each item in cart
+        li(style="margin-bottom: 10px;")
+          h6(style="margin-bottom: 5px;") #{item.itemName}
+          h7(style="margin-top: 0; margin-bottom: 5px;") Количество: #{item.quantity}
+          br
+          h7(style="margin-bottom: 5px;") Итого: #{item.totalPrice} руб.
+    h5#totalCartPrice(style="margin-top: 20px;") Итоговая цена заказа: #{cart.reduce((sum, item) => sum + parseFloat(item.totalPrice), 0)} руб.
+    
+    form(style="margin-top: 20px;", action='/orders/checkout', method='post')
+      div.form-group
+        label(for='address') Адрес доставки
+        input.form-control(type='text', name='address', placeholder='Введите адрес доставки', required)
+      div.form-group
+        label(for='phone') Телефон
+        input.form-control(type='text', name='phone', placeholder='Введите номер телефона', required)
+      div.form-group
+        label(for='deliveryTime') Время доставки
+        input.form-control(type='datetime-local', name='deliveryTime', required)
+      button(type='submit', style="margin-top: 10px;") Оформить заказ
+
+    a(href='/orders') История заказов
+  else
+    p(style="margin-top: 20px;") Ваша корзина пуста.
+    a(href='/orders') История заказов

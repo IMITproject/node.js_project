@@ -1,0 +1,16 @@
+
+extends ../layout
+
+block content
+  h3 Вход в систему
+  form(action="/login" method="POST")
+    .form-group.mb-3
+      input(type="text" name="username" placeholder="Логин" class="form-control" required)
+    .form-group.mb-3
+      input(type="password" name="password" placeholder="Пароль" class="form-control" required)
+    .form-group.mb-3
+      input(type="submit" value="Войти" class="btn btn-primary")
+  a(href="/register")
+    | Зарегистрироваться
+  if message
+    h4.text-center.text-danger= message

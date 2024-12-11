@@ -1,0 +1,24 @@
+extends layout 
+block content
+  h1 Бар
+  style.
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0;
+      list-style-type: none;
+    }
+    li {
+      margin: 10px; /* задайте отступы между элементами */
+      flex: 1 1 calc(33.333% - 20px); /* три элемента в строке, убирая отступы */
+      box-sizing: border-box; /* учитываем отступы в ширине */
+    }
+  ul
+    each restaurant in restaurants
+      li
+        img(src=`/image/${restaurant.foto}` alt=`${restaurant.name}` width=200 height=150)
+        h2= restaurant.name
+        p= restaurant.description
+        p= restaurant.address
+        a(href=`/menu/${restaurant.id}`) Посмотреть меню
+

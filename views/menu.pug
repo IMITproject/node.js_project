@@ -1,0 +1,16 @@
+extends layout
+block content
+  h1 Меню #{restaurantName}
+  ul
+    each item in menuItems
+      li(style="display: inline-block; width: 30%; margin-right: 1%; margin-bottom: 20px; vertical-align: top;")
+        h2(style="font-size: 19px;")= item.name
+        img(src=`/imagemenu/${item.foto}` alt=`${item.name}` width=200 height=195)
+        p Цена: #{item.price} руб.
+        p= item.description
+        form(action='/orders/cart/add', method='post')
+          input(type='hidden', name='itemId', value=item.id)
+          input(type='hidden', name='itemName', value=item.name)
+          input(type='hidden', name='itemPrice', value=item.price)
+          input(type='hidden', name='itemDescription', value=item.description)
+          button(type='submit') Добавить в корзину
