@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1 Фильмы #{cinemaName}
+  ul
+    each movie in movies
+      li(style="display: inline-block; width: 30%; margin-right: 1%; margin-bottom: 20px; vertical-align: top;")
+        h2(style="font-size: 19px;")= movie.title
+        img(src=`/image_movies/${movie.poster}` alt=`${movie.title}` width=200 height=150)
+        p Жанр: #{movie.genre}
+        p Дата выхода: #{movie.release_date}
+        p Рейтинг: #{movie.rating}
+        p= movie.description
+        
+        // Проверяем, есть ли сеансы для данного фильма
+        if movie.showtime
+          p Время показа: #{formatShowtime(movie.showtime)} 
+        else
+          p Время показа: Нет доступных сеансов
+
+        form(action='/tickets/cart/add', method='post')  
+          input(type='hidden', name='movieId', value=movie.id)
+          input(type='hidden', name='movieTitle', value=movie.title)
+          input(type='hidden', name='movieRating', value=movie.rating)
+          button(type='submit') Купить билет

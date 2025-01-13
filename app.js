@@ -7,7 +7,7 @@ const passport = require('passport');
 const expressSession = require('express-session');
 const flash = require('connect-flash');
 const pp = require('./passport');
-const userMiddleware = require('./middleware'); // Подключение пользовательской middleware
+const userMiddleware = require('./middleware'); 
 
 const app = express();
 
@@ -58,10 +58,18 @@ const menuRouter = require('./routes/menu');
 const ordersRouter = require('./routes/orders');
 const restaurantsRouter = require('./routes/restaurants');
 const authentication = require('./routes/authentication');
+const cinemasRouter = require('./routes/cinemas'); 
+const moviesRouter = require('./routes/movies'); 
+const showtimesRouter = require('./routes/showtimes'); 
+const ticketsRouter = require('./routes/tickets'); 
 
 app.use('/menu', menuRouter);
 app.use('/orders', ordersRouter);
 app.use('/restaurants', restaurantsRouter);
+app.use('/cinemas', cinemasRouter); // Подключаем маршруты для кинотеатров
+app.use('/movies', moviesRouter); // Подключаем маршруты для фильмов
+app.use('/showtimes', showtimesRouter); // Подключаем маршруты для расписания сеансов
+app.use('/tickets', ticketsRouter); // Подключаем маршруты для билетов
 app.use('/', authentication);
 
 // Главная страница

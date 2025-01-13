@@ -18,14 +18,8 @@ block content
     
     form(style="margin-top: 20px;", action='/orders/checkout', method='post')
       div.form-group
-        label(for='address') Адрес доставки
-        input.form-control(type='text', name='address', placeholder='Введите адрес доставки', required)
-      div.form-group
         label(for='phone') Телефон
         input.form-control(type='text', name='phone', placeholder='Введите номер телефона', required)
-      div.form-group
-        label(for='deliveryTime') Время доставки
-        input.form-control(type='datetime-local', name='deliveryTime', required)
       button(type='submit', style="margin-top: 10px;") Оформить заказ
 
     a(href='/orders') История заказов

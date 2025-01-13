@@ -7,9 +7,24 @@ html
       script(src="/bootstrap/js/bootstrap.js")
     block styles
       link(rel="stylesheet" href="/bootstrap/css/bootstrap.css")
+      style.
+        body {
+          background-image: url('/image/46ca9f8.jpeg');
+          background-size: cover; 
+          background-position: center; 
+          background-repeat: no-repeat; 
+        }
+        .content-background {
+          background-color: rgba(0, 0, 0, 10); 
+          padding: 20px; 
+          border-radius: 5px; 
+          color: black; 
+        }
   body
-    nav(class="navbar navbar-light px-4" style="background-color: #B0DDCB;")
-      a(href='/restaurants' class="navbar-brand") Бар
+    nav(class="navbar navbar-light px-4" style="background-color: rgba(135, 206, 250, 1);") 
+      a(href='/cinemas' class="navbar-brand") Кинотеатры
+      a(href='/movies' class="navbar-brand") Фильмы 
+      a(href='/restaurants' class="navbar-brand") Кафетерий
       a(href='/orders/cart' class="navbar-brand") Корзина
       if username
         span.navbar-text Добро пожаловать, #{username}!

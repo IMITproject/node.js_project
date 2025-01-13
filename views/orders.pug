@@ -15,19 +15,15 @@ block content
         tr
           th Заказ
           th Общая сумма
-          th Товары(блюдо, количество, цена*количество)
-          th Адрес
+          th Товары (фильм, количество, цена за единицу)
           th Телефон
-          th Время доставки
       tbody
         each order in orders.reverse()
           tr
             td Заказ #{order.id}
             td #{order.total_price} руб.
-            td #{order.items}
-            td #{order.address}
+            td #{order.items} // Отображаем фильм с количеством и ценой за единицу
             td #{order.phone}
-            td #{order.delivery_time}
   else
     p У вас нет предыдущих заказов.
 

@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1 Фильмы #{cinemaName}
+  ul
+    each movie in movies
+      li(style="display: inline-block; width: 30%; margin-right: 1%; margin-bottom: 20px; vertical-align: top; text-align: center;")
+        h2(style="font-size: 19px;")= movie.title
+        img(src=`/imagemovies/${movie.poster}` alt=`${movie.title}` width=200 height=320)
+        p Жанр: #{movie.genre}
+        p Дата выхода: #{movie.release_date}
+        p Рейтинг: #{movie.rating}
+        p Цена: #{movie.price}₽
+        p= movie.description
+        form(action='/tickets/cart/add', method='post')  
+          input(type='hidden', name='movieId', value=movie.id)
+          input(type='hidden', name='movieTitle', value=movie.title)
+          input(type='hidden', name='movieRating', value=movie.rating)
+          input(type='hidden', name='moviePrice', value=movie.price)  
+          button(type='submit') Купить билет

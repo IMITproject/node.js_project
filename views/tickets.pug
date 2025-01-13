@@ -1,0 +1,35 @@
+//tickets.pug
+extends layout
+
+block content
+  h1 История покупок билетов
+
+  if tickets.length
+    style.
+      table { width: 100%; border-collapse: collapse; }
+      th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+      th { background-color: #f2f2f2; }
+      tr:hover { background-color: #f5f5f5; }
+
+    table
+      thead
+        tr
+          th Билет
+          th Фильм
+          th Кинотеатр
+          th Цена
+          th Время сеанса
+      tbody
+        each ticket in tickets.reverse()
+          tr
+            td Билет #{ticket.id}
+            td #{ticket.movie_title}
+            td #{ticket.cinema_name}
+            td #{ticket.total_price} руб.
+            td #{ticket.showtime}
+  else
+    p У вас нет предыдущих покупок билетов.
+
+  a(href='/cinemas') Вернуться к кинотеатрам
+  br
+  a(href='/tickets/cart') Вернуться в корзину
