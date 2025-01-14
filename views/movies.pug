@@ -2,19 +2,47 @@ extends layout
 
 block content
   h1 Фильмы #{cinemaName}
-  ul
-    each movie in movies
-      li(style="display: inline-block; width: 30%; margin-right: 1%; margin-bottom: 20px; vertical-align: top; text-align: center;")
-        h2(style="font-size: 19px;")= movie.title
-        img(src=`/imagemovies/${movie.poster}` alt=`${movie.title}` width=200 height=320)
-        p Жанр: #{movie.genre}
-        p Дата выхода: #{movie.release_date}
-        p Рейтинг: #{movie.rating}
-        p Цена: #{movie.price}₽
-        p= movie.description
-        form(action='/tickets/cart/add', method='post')  
-          input(type='hidden', name='movieId', value=movie.id)
-          input(type='hidden', name='movieTitle', value=movie.title)
-          input(type='hidden', name='movieRating', value=movie.rating)
-          input(type='hidden', name='moviePrice', value=movie.price)  
-          button(type='submit') Купить билет
+  style.
+    .movies-container {
+      background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный чёрный фон для всех фильмов */
+      padding: 20px; /* Внутренние отступы */
+      border-radius: 10px; /* Скругление углов */
+      color: white; /* Цвет текста внутри */
+      margin: 10px; /* Отступы вокруг контейнера */
+    }
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0;
+      list-style-type: none;
+    }
+    li {
+      margin: 10px; 
+      flex: 1 1 calc(30% - 20px); /* Устанавливаем ширину карточек */
+      box-sizing: border-box; 
+    }
+    .movie-card {
+      background-color: transparent; /* Прозрачный фон для карточек */
+      padding: 10px; /* Внутренние отступы */
+      border-radius: 5px; /* Скругление углов */
+      border: 1px solid white; /* Белая рамка для карточек */
+      text-align: center; /* Центрирование текста внутри карточки */
+    }
+  .movies-container
+    ul
+      each movie in movies
+        li
+          .movie-card
+            h2(style="font-size: 19px;")= movie.title
+            img(src=`/imagemovies/${movie.poster}` alt=`${movie.title}` width=200 height=320)
+            p Жанр: #{movie.genre}
+            p Дата выхода: #{movie.release_date}
+            p Рейтинг: #{movie.rating}
+            p Цена: #{movie.price}₽
+            p= movie.description
+            form(action='/tickets/cart/add', method='post')  
+              input(type='hidden', name='movieId', value=movie.id)
+              input(type='hidden', name='movieName', value=movie.title)
+              input(type='hidden', name='movieRating', value=movie.rating)
+              input(type='hidden', name='moviePrice', value=movie.price)  
+              button(type='submit') Купить билет

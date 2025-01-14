@@ -3,6 +3,13 @@ extends layout
 block content
   h1 Кинотеатры
   style.
+    .cinema-container {
+      background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный чёрный фон для всего контейнера */
+      padding: 20px; /* Внутренние отступы */
+      border-radius: 10px; /* Скругление углов */
+      color: white; /* Цвет текста внутри */
+      margin: 10px; /* Отступы вокруг контейнера */
+    }
     ul {
       display: flex;
       flex-wrap: wrap;
@@ -14,11 +21,19 @@ block content
       flex: 1 1 calc(33.333% - 20px); 
       box-sizing: border-box; 
     }
-  ul
-    each cinema in cinemas
-      li
-        img(src=`/image/${cinema.photo}` alt=`${cinema.name}` width=200 height=150)
-        h2= cinema.name
-        p= cinema.description
-        p= cinema.address
-        a(href=`/showtimes/${cinema.id}`) Посмотреть сеансы
+    .cinema-card {
+      background-color: transparent; /* Прозрачный фон для карточек */
+      padding: 10px; /* Внутренние отступы */
+      border-radius: 5px; /* Скругление углов */
+      border: 1px solid white; /* Белая рамка для карточек */
+    }
+  .cinema-container
+    ul
+      each cinema in cinemas
+        li
+          .cinema-card
+            img(src=`/image/${cinema.photo}` alt=`${cinema.name}` width=200 height=150)
+            h2= cinema.name
+            p= cinema.description
+            p= cinema.address
+            a(href=`/showtimes/${cinema.id}`) Посмотреть сеансы

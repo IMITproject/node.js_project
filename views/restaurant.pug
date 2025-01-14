@@ -1,7 +1,15 @@
-extends layout 
+extends layout
+
 block content
   h1 Бар
   style.
+    .restaurants-container {
+      background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный чёрный фон для всех ресторанов */
+      padding: 20px; /* Внутренние отступы */
+      border-radius: 10px; /* Скругление углов */
+      color: white; /* Цвет текста внутри */
+      margin: 10px; /* Отступы вокруг контейнера */
+    }
     ul {
       display: flex;
       flex-wrap: wrap;
@@ -9,16 +17,25 @@ block content
       list-style-type: none;
     }
     li {
-      margin: 10px; /* задайте отступы между элементами */
-      flex: 1 1 calc(33.333% - 20px); /* три элемента в строке, убирая отступы */
-      box-sizing: border-box; /* учитываем отступы в ширине */
+      margin: 10px; /* Задайте отступы между элементами */
+      flex: 1 1 calc(33.333% - 20px); /* Три элемента в строке, убирая отступы */
+      box-sizing: border-box; /* Учитываем отступы в ширине */
     }
-  ul
-    each restaurant in restaurants
-      li
-        img(src=`/image/${restaurant.foto}` alt=`${restaurant.name}` width=200 height=150)
-        h2= restaurant.name
-        p= restaurant.description
-        p= restaurant.address
-        a(href=`/menu/${restaurant.id}`) Посмотреть меню
-
+    .restaurant-card {
+      background-color: transparent; /* Прозрачный фон для карточек ресторанов */
+      padding: 10px; /* Внутренние отступы */
+      border-radius: 5px; /* Скругление углов */
+      border: 1px solid white; /* Белая рамка для карточек */
+      text-align: center; /* Центрирование текста внутри карточки */
+    }
+  
+  .restaurants-container
+    ul
+      each restaurant in restaurants
+        li
+          .restaurant-card
+            img(src=`/image/${restaurant.foto}` alt=`${restaurant.name}` width=200 height=150)
+            h2= restaurant.name
+            p= restaurant.description
+            p= restaurant.address
+            a(href=`/menu/${restaurant.id}`) Посмотреть меню

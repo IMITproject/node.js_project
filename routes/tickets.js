@@ -14,7 +14,13 @@ router.get('/cart', (req, res) => {
 // Добавление в корзину
 router.post('/cart/add', (req, res) => {
   const { movieId, movieName, moviePrice } = req.body;
-  console.log(`Adding to cart: ID: ${movieId}, Name: ${movieName}, Price: ${moviePrice}`); // Логируем добавление
+
+  console.log('Request body:', req.body); // Логируем весь запрос
+  console.log(`Adding to cart: ID: ${movieId}, Name: ${movieName}, Price: ${moviePrice}`);
+
+  if (!movieId || !movieName || !moviePrice) {
+    return res.status(400).send('Недостаточно данных для добавления в корзину');
+  }
 
   const cart = req.session.cart || [];
   const existingItem = cart.find(item => item.movieId === parseInt(movieId, 10));
@@ -24,8 +30,8 @@ router.post('/cart/add', (req, res) => {
     existingItem.totalPrice += parseFloat(moviePrice);
   } else {
     cart.push({
-      movieId: parseInt(movieId, 10),
-      movieName,  // Название фильма
+      movieId: parseInt(movieId, 10), // Убедитесь, что movieId есть
+      movieName,                      // Убедитесь, что movieName есть
       moviePrice: parseFloat(moviePrice),
       quantity: 1,
       totalPrice: parseFloat(moviePrice)
@@ -33,6 +39,7 @@ router.post('/cart/add', (req, res) => {
   }
 
   req.session.cart = cart;
+  console.log('Updated cart:', cart); // Логируем обновленную корзину
   res.redirect('back');
 });
 

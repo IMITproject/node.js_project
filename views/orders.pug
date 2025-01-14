@@ -2,30 +2,49 @@ extends layout
 
 block content
   h1 История заказов
+  style.
+    .orders-container {
+      background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный черный фон для контейнера заказов */
+      padding: 20px; /* Внутренние отступы */
+      border-radius: 10px; /* Скругление углов */
+      color: white; /* Цвет текста */
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px; /* Отступ сверху для таблицы */
+    }
+    th, td {
+      padding: 12px; /* Увеличенные отступы для ячеек */
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #444; /* Темный фон для заголовков */
+      color: white; /* Цвет текста заголовков */
+    }
+    tr:hover {
+      background-color: rgba(255, 255, 255, 0.1); /* Прозрачный светлый фон при наведении */
+    }
 
-  if orders.length
-    style.
-      table { width: 100%; border-collapse: collapse; }
-      th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
-      th { background-color: #f2f2f2; }
-      tr:hover { background-color: #f5f5f5; }
-
-    table
-      thead
-        tr
-          th Заказ
-          th Общая сумма
-          th Товары (фильм, количество, цена за единицу)
-          th Телефон
-      tbody
-        each order in orders.reverse()
+  .orders-container
+    if orders.length
+      table
+        thead
           tr
-            td Заказ #{order.id}
-            td #{order.total_price} руб.
-            td #{order.items} // Отображаем фильм с количеством и ценой за единицу
-            td #{order.phone}
-  else
-    p У вас нет предыдущих заказов.
+            th Заказ
+            th Общая сумма
+            th Товары (фильм(или еда), количество, цена за единицу)
+            th Телефон
+        tbody
+          each order in orders.reverse()
+            tr
+              td Заказ #{order.id}
+              td #{order.total_price} руб.
+              td #{order.items}
+              td #{order.phone}
+    else
+      p У вас нет предыдущих заказов.
 
   a(href='/restaurants') Вернуться к ресторанам
   br

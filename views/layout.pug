@@ -13,15 +13,19 @@ html
           background-size: cover; 
           background-position: center; 
           background-repeat: no-repeat; 
+          color: white; /* Цвет текста всего тела документа */
         }
         .content-background {
-          background-color: rgba(0, 0, 0, 10); 
+          background-color: rgba(0, 0, 0, 0.7); /* Темный фон для содержимого блока */
           padding: 20px; 
           border-radius: 5px; 
-          color: black; 
+          color: white; /* Белый цвет текста для содержимого блока */
+        }
+        .navbar-brand {
+          color: white !important; /* Устанавливаем белый цвет текста для навигационных элементов с !important */
         }
   body
-    nav(class="navbar navbar-light px-4" style="background-color: rgba(135, 206, 250, 1);") 
+    nav(class="navbar navbar-light px-4" style="background-color: rgb(51, 84, 134);") 
       a(href='/cinemas' class="navbar-brand") Кинотеатры
       a(href='/movies' class="navbar-brand") Фильмы 
       a(href='/restaurants' class="navbar-brand") Кафетерий

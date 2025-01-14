@@ -10,7 +10,10 @@ block content
     ul
       each item in cart
         li(style="margin-bottom: 10px;")
-          h6(style="margin-bottom: 5px;") #{item.itemName}
+          if item.movieName
+            h6(style="margin-bottom: 5px;") Фильм: #{item.movieName} <!-- Название фильма для билетов -->
+          else if item.itemName
+            h6(style="margin-bottom: 5px;") #{item.itemName} <!-- Название для блюд -->
           h7(style="margin-top: 0; margin-bottom: 5px;") Количество: #{item.quantity}
           br
           h7(style="margin-bottom: 5px;") Итого: #{item.totalPrice} руб.
