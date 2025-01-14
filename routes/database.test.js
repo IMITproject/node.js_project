@@ -52,4 +52,4 @@ describe('SQLite Database Connection', () => {
 
         consoleErrorSpy.mockRestore();
     });
-});
+
