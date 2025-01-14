@@ -24,11 +24,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Set executable permissions
+        run: chmod +x ./node_modules/.bin/jest  # Установите права доступа
+
       - name: Run tests and generate coverage report
         run: npx jest --coverage
 
       - name: Upload coverage report as artifact
-        uses: actions/upload-artifact@v3  # Обновлено с v2 на v3
+        uses: actions/upload-artifact@v3
         with:
           name: coverage-report
           path: ./coverage
